@@ -1,8 +1,15 @@
-CREATE TABLE IF NOT EXISTS accounts(
-  id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
-  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-  name varchar(255) COMMENT 'User Name',
-  email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture'
+CREATE TABLE IF NOT EXISTS accounts (
+    id VARCHAR(255) NOT NULL primary key COMMENT 'primary key', createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created', updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update', name varchar(255) COMMENT 'User Name', email varchar(255) COMMENT 'User Email', picture varchar(255) COMMENT 'User Picture'
+) default charset utf8 COMMENT '';
+
+CREATE TABLE vaults (
+    id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, creatorId VARCHAR(255), description VARCHAR(1000) NOT NULL, img VARCHAR(255) NOT NULL, isPrivate BOOLEAN DEFAULT FALSE, createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+CREATE TABLE keeps (
+    id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(1000) NOT NULL, img VARCHAR(255) NOT NULL, creatorId VARCHAR(255), views INT, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+CREATE TABLE vaultKeeps (
+    id INT AUTO_INCREMENT PRIMARY KEY, creatorId VARCHAR(255), vaultId INT NOT NULL, keepId INT NOT NULL, Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE, Foreign Key (vaultId) REFERENCES vaults (id) ON DELETE CASCADE, Foreign Key (keepId) REFERENCES keeps (id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
