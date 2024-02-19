@@ -1,13 +1,8 @@
 <template>
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <router-link class="" :to="{ name: 'Keeps' }">
-        <img
-          src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG9tZSUyMGNoZWZ8ZW58MHx8MHx8fDA%3D"
-          alt="Cutting Board" class="rounded-circle">
-      </router-link>
       <h1>Hello, {{ user.name }}</h1>
-      <h2 class="my-5 bg-dark text-white p-3 rounded text-center">
+      <h2 class="my-5 p-3 rounded text-center">
         Welcome to Keeper
       </h2>
       <div class="row btn-group">
@@ -18,6 +13,12 @@
           <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
         </button>
       </div>
+      <router-link class="" :to="{ name: 'Keeps' }">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1681400651542-00885877ff2f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHNhZmV8ZW58MHx8MHx8fDA%3D"
+          alt="Cutting Board" class="rounded-circle">
+        <h1>ENTER</h1>
+      </router-link>
     </div>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default {
 <style scoped lang="scss">
 .home {
   display: grid;
-  height: 120vh;
+  height: 100vh;
   place-content: center;
   text-align: center;
   user-select: none;
@@ -59,8 +60,7 @@ export default {
     width: clamp(500px, 50vw, 100%);
 
     >img {
-      height: 200px;
-      max-width: 200px;
+      height: 100%;
       width: 100%;
       object-fit: contain;
       object-position: center;

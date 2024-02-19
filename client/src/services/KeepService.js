@@ -17,6 +17,13 @@ class KeepsService {
         logger.log("getting keep", response.data)
         AppState.activeKeep = new Keep(response.data)
     }
+    async createKeep(keepData) {
+        const response = await api.post('api/keeps', keepData)
+        logger.log('keeping keep', response.data)
+        const newKeep = new Keep(response.data)
+        AppState.keeps.unshift(newKeep)
+        return newKeep
+    }
 }
 
 export const keepsService = new KeepsService()

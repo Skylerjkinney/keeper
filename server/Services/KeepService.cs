@@ -32,6 +32,19 @@ public class KeepService(KeepRepository repo)
         Keep updatedKeep = repo.UpdateKeep(originalKeep);
         return updatedKeep;
     }
+    internal Keep IncreaseViews(Keep keep)
+    {
+        keep.Views++;
+        repo.UpdateKeep(keep);
+        return keep;
+    }
+    internal Keep IncreaseViews(int keepId)
+    {
+        Keep keep = repo.GetKeepById(keepId);
+        keep.Views++;
+        repo.UpdateKeep(keep);
+        return keep;
+    }
 
     internal string DeleteKeep(int keepId, string userId)
     {

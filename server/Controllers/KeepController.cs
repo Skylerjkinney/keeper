@@ -53,6 +53,7 @@ public class KeepController : ControllerBase
         try
         {
             Keep keep = keepService.GetKeepById(keepId);
+            keep = keepService.IncreaseViews(keep);
             return Ok(keep);
         }
         catch (Exception error)

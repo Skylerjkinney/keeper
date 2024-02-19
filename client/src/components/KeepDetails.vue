@@ -1,9 +1,9 @@
 <template>
     <section class="row">
-        <div v-if="activeKeep" class="col-6">
+        <div v-if="activeKeep" class="col-4">
             <img class="m-2 img-fluid rounded" :src="activeKeep.img" :alt="activeKeep.name">
         </div>
-        <div v-if="activeKeep" class="col-6 text-center">
+        <div v-if="activeKeep" class="col-8 text-center">
             <span><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</span>
             <span><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></span>
             <h1>{{ activeKeep.name }}</h1>
@@ -31,7 +31,9 @@ export default {
 
 <style lang="scss" scoped>
 img {
-    height: 97%;
-    width: 80%;
+    height: 50vh;
+    width: 80vh;
+    object-fit: cover;
+    object-position: center;
 }
 </style>
