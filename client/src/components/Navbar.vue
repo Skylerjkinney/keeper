@@ -12,7 +12,18 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="mdi mdi-plus">Create</i>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="fw-bolder selectable ms-1" data-bs-toggle="modal" data-bs-target="#keep-form-modal">Create Keep
+              </li>
+              <li class="fw-bolder selectable ms-1" data-bs-toggle="modal" data-bs-target="#vault-form-modal">Create Vault
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
