@@ -1,5 +1,5 @@
 <template>
-  <header class="justify-content-center">
+  <header class="mb-5">
     <Login />
   </header>
   <div class="container">
@@ -12,10 +12,12 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { keepsService } from '../services/KeepService.js'
+import { computed, onMounted } from 'vue';
 import KeepCard from '../components/KeepCard.vue';
 import Login from '../components/Login.vue';
 import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
 export default {
   setup() {
     onMounted(() => {
@@ -29,7 +31,7 @@ export default {
       }
     }
     return {
-
+      keeps: computed(() => AppState.keeps),
     }
   },
   components: { Login, KeepCard }

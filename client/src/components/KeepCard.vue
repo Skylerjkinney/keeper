@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <img :src="keep.img" alt="keep.name" style="width: 100%;">
-        <div class="bottom-left">This will be some stuff</div>
-        <div class="bottom-right"> this will be account img</div>
+        <img :src="keep.img" alt="keep.name" style="width: 100%;" :title="keep.name">
+        <div class="bottom-left">🏠</div>
+        <div class="bottom-right">🚓</div>
     </div>
 </template>
 
