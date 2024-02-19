@@ -57,6 +57,7 @@ public class KeepRepository(IDbConnection db)
         Keep keep = db.Query<Keep, Account, Keep>(sql, (keep, account) =>
         {
             keep.Creator = account;
+            keep.Views++;
             return keep;
         }, new { keepId }).FirstOrDefault();
         return keep;

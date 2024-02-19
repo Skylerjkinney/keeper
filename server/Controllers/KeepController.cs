@@ -48,7 +48,7 @@ public class KeepController : ControllerBase
     }
 
     [HttpGet("{keepId}")]
-    public ActionResult<Keep> GetOneKeepById(int keepId)
+    public ActionResult<Keep> GetKeepById(int keepId)
     {
         try
         {

@@ -1,8 +1,15 @@
 <template>
-    <div v-if="activeKeep" class="text-center text-light">
-        <h1>{{ activeKeep.name }}</h1>
-        <h3>{{ activeKeep.description }}</h3>
-    </div>
+    <section class="row">
+        <div v-if="activeKeep" class="col-6">
+            <img class="m-2 img-fluid rounded" :src="activeKeep.img" :alt="activeKeep.name">
+        </div>
+        <div v-if="activeKeep" class="col-6 text-center">
+            <span><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</span>
+            <span><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></span>
+            <h1>{{ activeKeep.name }}</h1>
+            <p>{{ activeKeep.description }}</p>
+        </div>
+    </section>
 </template>
 
 
@@ -22,4 +29,9 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+    height: 97%;
+    width: 80%;
+}
+</style>
