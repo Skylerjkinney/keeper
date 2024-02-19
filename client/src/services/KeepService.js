@@ -11,6 +11,10 @@ class KeepsService {
         let newKeeps = response.data.map(keep => new Keep(keep))
         AppState.keeps = newKeeps
     }
+    setActiveKeep(keepId) {
+        const activeKeep = AppState.keeps.find(keep => keep.id == keepId)
+        AppState.activeKeep = activeKeep
+    }
 }
 
 export const keepsService = new KeepsService()

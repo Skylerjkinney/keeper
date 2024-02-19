@@ -1,10 +1,10 @@
 <template>
   <header class="mb-5">
-    <Login />
+    <Navbar />
   </header>
   <div class="container">
-    <div class="row">
-      <div class="col-3" v-for="keep in keeps">
+    <div class="masonry">
+      <div class="my-2" v-for="keep in keeps">
         <KeepCard :keep="keep" />
       </div>
     </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 import { keepsService } from '../services/KeepService.js'
 import { computed, onMounted } from 'vue';
 import KeepCard from '../components/KeepCard.vue';
@@ -34,6 +35,12 @@ export default {
       keeps: computed(() => AppState.keeps),
     }
   },
-  components: { Login, KeepCard }
+  components: { Login, KeepCard, Navbar }
 }
 </script>
+
+<style lang="scss" scoped>
+.masonry {
+  columns: 250px;
+}
+</style>

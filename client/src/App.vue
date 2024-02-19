@@ -1,10 +1,13 @@
 <template>
   <main>
+    <ModalWrapper modalId="keep-details-modal">
+    </ModalWrapper>
     <router-view />
   </main>
 </template>
 
 <script>
+import ModalWrapper from './components/ModalWrapper.vue'
 import { computed } from 'vue'
 import { AppState } from './AppState'
 
@@ -14,7 +17,8 @@ export default {
     return {
       appState: computed(() => AppState)
     }
-  }
+  },
+  components: { ModalWrapper }
 }
 </script>
 <style lang="scss">
