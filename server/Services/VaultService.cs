@@ -6,8 +6,8 @@ public class VaultService(VaultRepository repo)
 
     internal Vault CreateVault(Vault vaultData)
     {
-        Vault vaults = repo.CreateVault(vaultData);
-        return vaults;
+        Vault vault = repo.CreateVault(vaultData);
+        return vault;
     }
 
     internal Vault GetVaultById(int vaultId)

@@ -22,8 +22,8 @@ public class VaultController : ControllerBase
         try
         {
             Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
-            Vault newVault = vaultService.CreateVault(vaultData);
             vaultData.CreatorId = userInfo.Id;
+            Vault newVault = vaultService.CreateVault(vaultData);
             return Ok(newVault);
         }
         catch (Exception error)
