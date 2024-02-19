@@ -12,6 +12,13 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+  async updateAccount(accountData) {
+    try {
+      logger.log(accountData)
+    } catch (error) {
+
+    }
+  }
 }
 
 export const accountService = new AccountService()
