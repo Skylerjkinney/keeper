@@ -34,4 +34,17 @@ public class ProfileController(ProfilesService profileService, Auth0Provider aut
             return BadRequest(error.Message);
         }
     }
+    [HttpGet("{profileId}/vaults")]
+    public ActionResult<List<Vault>> GetProfileVaults(string profileId)
+    {
+        try
+        {
+            List<Vault> vaults = profilesService.GetProfileVaults(profileId);
+            return Ok(vaults);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error.Message);
+        }
+    }
 }

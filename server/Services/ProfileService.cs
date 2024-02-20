@@ -20,4 +20,9 @@ public class ProfilesService
         List<Keep> keeps = _repo.GetProfileKeeps(profileId);
         return keeps;
     }
+    internal List<Vault> GetProfileVaults(string profileId)
+    {
+        List<Vault> vaults = _repo.GetProfileVaults(profileId);
+        return vaults;
+    }
 }
