@@ -20,4 +20,18 @@ public class ProfileController(ProfilesService profileService, Auth0Provider aut
             return BadRequest(error.Message);
         }
     }
+
+    [HttpGet("{profileId}/keeps")]
+    public ActionResult<List<Keep>> GetProfileKeeps(string profileId)
+    {
+        try
+        {
+            List<Keep> keeps = profilesService.GetProfileKeeps(profileId);
+            return Ok(keeps);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error.Message);
+        }
+    }
 }

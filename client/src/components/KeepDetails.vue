@@ -8,8 +8,10 @@
                 <img :title="`Look at ${activeKeep.creator.name}'s Vaults!`" :src="activeKeep.creator.picture"
                     :alt="activeKeep.creator.name" class="my-2 tiny-img">
             </router-link>
-            <span><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</span>
-            <span><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></span>
+            <div class="btn-group">
+                <div><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</div>
+                <div><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></div>
+            </div>
             <h1>{{ activeKeep.name }}</h1>
             <p>{{ activeKeep.description }}</p>
         </div>

@@ -15,4 +15,9 @@ public class ProfilesService
         if (profile == null) throw new Exception($"No profile at: {profileId}");
         return profile;
     }
+    internal List<Keep> GetProfileKeeps(string profileId)
+    {
+        List<Keep> keeps = _repo.GetProfileKeeps(profileId);
+        return keeps;
+    }
 }
