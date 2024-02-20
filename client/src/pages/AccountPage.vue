@@ -1,14 +1,15 @@
 <template>
   <section class="">
+    <img :src="account.coverImg" :alt="account.name" class="img-fluid">
     <div class="container-fluid">
       <section class="row justify-content-center">
         <div class="col-12 text-center list-card d-flex flex-column align-items-center w-50 mt-4">
           <div class="about text-center text-info ">
             <h1>Welcome {{ account.name }}</h1>
-            <img class="rounded bg-img" :src="account.picture" alt="" />
+            <img class="rounded bg-img" :src="account.picture" :alt="account.name" />
             <h3>{{ account.email }}</h3>
           </div>
-          <form @submit.prevent="updateAccount">
+          <form @submit.prevent="updateAccount()">
             <div class="mb-3">
               <label for="name">Name</label>
               <input v-model="update.name" class="form-control" id="name" type="text" required>
@@ -16,6 +17,10 @@
             <div class="mb-3">
               <label for="picture">Picture</label>
               <input v-model="update.picture" class="form-control" id="picture" type="url" required>
+            </div>
+            <div class="mb-3">
+              <label for="cover">Cover Image</label>
+              <input v-model="update.coverImg" class="form-control" id="cover" type="url">
             </div>
             <div class="text-center mb-3">
               <button class="btn btn-outline-success" type="submit">Update</button>
@@ -81,5 +86,9 @@ label {
   width: 80px;
   object-fit: contain;
   object-position: center;
+}
+
+.cover-img {
+  background-image: url();
 }
 </style>
