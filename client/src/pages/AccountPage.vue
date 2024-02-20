@@ -1,7 +1,7 @@
 <template>
+  <img :src="account.coverImg" :alt="account.name" class="cover-img">
   <section class="">
-    <img :src="account.coverImg" :alt="account.name" class="img-fluid">
-    <div class="container-fluid">
+    <div class="container-fluid centered">
       <section class="row justify-content-center">
         <div class="col-12 text-center list-card d-flex flex-column align-items-center w-50 mt-4">
           <div class="about text-center text-info ">
@@ -89,6 +89,23 @@ label {
 }
 
 .cover-img {
-  background-image: url();
+  height: 100dvh;
+  width: 100dvw;
+  object-position: center;
+  object-fit: cover;
+  position: fixed;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
