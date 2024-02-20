@@ -1,9 +1,13 @@
 <template>
-    <section class="row">
-        <div v-if="activeKeep" class="col-4">
+    <section v-if="activeKeep" class="row">
+        <div class="col-4">
             <img class="m-2 img-fluid rounded" :src="activeKeep.img" :alt="activeKeep.name">
         </div>
-        <div v-if="activeKeep" class="col-8 text-center">
+        <div class="col-8 text-center">
+            <router-link :to="{ name: 'Profile', params: { profileId: activeKeep.creatorId } }">
+                <img :title="`Look at ${activeKeep.creator.name}'s Vaults!`" :src="activeKeep.creator.picture"
+                    :alt="activeKeep.creator.name" class="my-2 tiny-img">
+            </router-link>
             <span><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</span>
             <span><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></span>
             <h1>{{ activeKeep.name }}</h1>
@@ -35,5 +39,10 @@ img {
     width: 80vh;
     object-fit: cover;
     object-position: center;
+}
+
+.tiny-img {
+    height: 30px;
+    width: 30px;
 }
 </style>
