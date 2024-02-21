@@ -2,8 +2,7 @@
     <div v-if="profile" class="container-fluid">
         <section class="row text-center">
             <h1>{{ profile.name }}</h1>
-            <h2>{{ profile. }}</h2>
-            <p>{{ profile.bio }}</p>
+            <h2>{{ profile.description }}</h2>
         </section>
     </div>
 </template>
