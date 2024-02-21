@@ -23,6 +23,7 @@ public class ProfilesService
     internal List<Vault> GetProfileVaults(string profileId)
     {
         List<Vault> vaults = _repo.GetProfileVaults(profileId);
-        return vaults;
+        List<Vault> publicVaults = vaults.FindAll(vault => vault.IsPrivate == false);
+        return publicVaults;
     }
 }

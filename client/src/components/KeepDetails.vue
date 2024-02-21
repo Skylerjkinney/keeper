@@ -9,8 +9,8 @@
                     :alt="activeKeep.creator.name" class="my-2 tiny-img">
             </router-link>
             <div class="btn-group">
-                <div><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</div>
-                <div><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></div>
+                <div class="mx-1"><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</div>
+                <div class="mx-1"><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></div>
             </div>
             <h1>{{ activeKeep.name }}</h1>
             <p>{{ activeKeep.description }}</p>

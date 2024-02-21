@@ -13,3 +13,9 @@ CREATE TABLE keeps (
 CREATE TABLE vaultKeeps (
     id INT AUTO_INCREMENT PRIMARY KEY, creatorId VARCHAR(255), vaultId INT NOT NULL, keepId INT NOT NULL, Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE, Foreign Key (vaultId) REFERENCES vaults (id) ON DELETE CASCADE, Foreign Key (keepId) REFERENCES keeps (id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+INSERT INTO
+    vaultKeeps (creatorId, vaultId, keepId)
+VALUES (@creatorId, @vaultId, @keepId);
+
+SELECT vaults.* FROM vaults
