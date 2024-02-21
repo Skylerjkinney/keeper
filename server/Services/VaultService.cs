@@ -10,10 +10,11 @@ public class VaultService(VaultRepository repo)
         return vault;
     }
 
-    internal Vault GetVaultById(int vaultId)
+    internal Vault GetVaultById(int vaultId, string userId)
     {
         Vault vault = repo.GetVaultById(vaultId);
-        if (vault == null || vault.IsPrivate == true) { throw new Exception("No vault available"); }
+        if (vault == null) throw new Exception("No vault there");
+        if (vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception("vault is private and you don't own it");
         else
         {
             return vault;
@@ -31,7 +32,7 @@ public class VaultService(VaultRepository repo)
 
     internal Vault UpdateVault(Vault vaultData, int vaultId, string userId)
     {
-        Vault originalVault = GetVaultById(vaultId) ?? throw new Exception("Item not found.");
+        Vault originalVault = GetVaultById(vaultId, userId) ?? throw new Exception("Item not found.");
         if (originalVault.CreatorId == userId)
         {
             originalVault.Img = vaultData.Img?.Length > 0 ? vaultData.Img : originalVault.Img;
@@ -49,7 +50,7 @@ public class VaultService(VaultRepository repo)
 
     internal string DeleteVault(int vaultId, string userId)
     {
-        Vault foundVault = GetVaultById(vaultId);
+        Vault foundVault = GetVaultById(vaultId, userId);
         if (foundVault.CreatorId == userId)
         {
             repo.DeleteVault(vaultId);

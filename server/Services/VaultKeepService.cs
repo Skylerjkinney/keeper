@@ -13,7 +13,6 @@ public class VaultKeepService(VaultKeepRepository repo, VaultService vaultServic
     }
     internal List<VaultKept> GetVaultKeeps(int vaultId)
     {
-        Vault vault = vaultService.GetVaultById(vaultId);
         List<VaultKept> VaultKeep = repo.GetVaultKeeps(vaultId);
         return VaultKeep;
     }
