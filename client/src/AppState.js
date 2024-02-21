@@ -11,4 +11,6 @@ export const AppState = reactive({
   activeKeep: null,
   /** @type {import('.models/Profile.js').Profile | null} */
   activeProfile: null,
+  /** @type {Keep[]} */
+  profileKeeps: [],
 })
