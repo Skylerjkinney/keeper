@@ -22,7 +22,7 @@ public class VaultKeepsController : ControllerBase
         try
         {
             Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
-            vaultKeepData.CreatorId = userInfo.Id;
+            if (vaultKeepData.CreatorId != userInfo.Id) throw new Exception("You cannot keep that vault");
             VaultKeep vaultKeep = vaultKeepService.CreateVaultKeep(vaultKeepData);
             return Ok(vaultKeep);
         }

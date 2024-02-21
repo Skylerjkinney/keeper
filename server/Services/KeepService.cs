@@ -26,6 +26,7 @@ public class KeepService(KeepRepository repo)
     internal Keep UpdateKeep(Keep updateData, int keepId)
     {
         Keep originalKeep = GetKeepById(keepId);
+        if (originalKeep.CreatorId != updateData.CreatorId) throw new Exception("You cannot manipulate that which you do not own...");
         originalKeep.Img = updateData.Img?.Length > 0 ? updateData.Img : originalKeep.Img;
         originalKeep.Description = updateData.Description?.Length > 0 ? updateData.Description : originalKeep.Description;
         originalKeep.Name = updateData.Name?.Length > 0 ? updateData.Name : originalKeep.Name;
