@@ -1,3 +1,5 @@
+using System.Net.Http;
+
 namespace keeper.Controllers;
 [ApiController]
 [Route("api/vaultkeeps")]
@@ -23,6 +25,25 @@ public class VaultKeepsController : ControllerBase
             vaultKeepData.CreatorId = userInfo.Id;
             VaultKeep vaultKeep = vaultKeepService.CreateVaultKeep(vaultKeepData);
             return Ok(vaultKeep);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error.Message);
+        }
+    }
+    [HttpDelete("{vaultKeepId}")]
+    [Authorize]
+    public async Task<ActionResult<string>> DeleteVaultKeep(int vaultKeepId)
+    {
+        try
+        {
+            Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
+            string message = vaultKeepService.DeleteVaultKeep(vaultKeepId);
+            return Ok(message);
+        }
+        catch (HttpRequestException error)
+        {
+            return StatusCode((int)error.StatusCode, error.Message);
         }
         catch (Exception error)
         {

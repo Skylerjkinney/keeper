@@ -1,8 +1,9 @@
 
 namespace keeper.Services;
 
-public class VaultKeepService(VaultKeepRepository repo)
+public class VaultKeepService(VaultKeepRepository repo, VaultService vaultService)
 {
+    private readonly VaultService vaultService = vaultService;
     private readonly VaultKeepRepository repo = repo;
 
     internal VaultKeep CreateVaultKeep(VaultKeep VaultKeepData)
@@ -10,15 +11,16 @@ public class VaultKeepService(VaultKeepRepository repo)
         VaultKeep VaultKeep = repo.CreateVaultKeep(VaultKeepData);
         return VaultKeep;
     }
-    internal List<VaultKeep> GetVaultKeeps(string userId)
+    internal List<VaultKept> GetVaultKeeps(int vaultId)
     {
-        List<VaultKeep> VaultKeep = repo.GetVaultKeeps(userId);
+        Vault vault = vaultService.GetVaultById(vaultId);
+        List<VaultKept> VaultKeep = repo.GetVaultKeeps(vaultId);
         return VaultKeep;
     }
 
-    //     internal string DeleteVaultKeep(string VaultKeepId)
-    //     {
-    //         repo.DeleteVaultKeep(VaultKeepId);
-    //         return "UnVaultkeepeded, Milord.";
-    //     }
+    internal string DeleteVaultKeep(int VaultKeepId)
+    {
+        repo.DeleteVaultKeep(VaultKeepId);
+        return "UnVaultkeepeded, Milord.";
+    }
 }

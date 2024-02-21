@@ -34,14 +34,14 @@ public class Startup
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
 
-    services.AddScoped<VaultKeepService>();
-    services.AddScoped<VaultKeepRepository>();
-
     services.AddScoped<KeepRepository>();
     services.AddScoped<KeepService>();
 
     services.AddScoped<VaultRepository>();
     services.AddScoped<VaultService>();
+
+    services.AddScoped<VaultKeepService>();
+    services.AddScoped<VaultKeepRepository>();
 
     services.AddScoped<ProfilesService>();
 
