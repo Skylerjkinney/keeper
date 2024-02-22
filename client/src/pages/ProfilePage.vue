@@ -1,25 +1,28 @@
 <template>
-    <header class="mb-5">
+    <header class="mb-1">
         <Navbar />
     </header>
     <div v-if="profile" class="container-fluid">
-        <section class="row text-center">
+        <div class="text-center my-2">
             <h1>{{ profile.name }}</h1>
             <img class="profile-img" :src="profile.picture" :alt="profile.name">
+        </div>
+        <section class="row">
             <img class="bg-img" :src="profile.coverImg" :alt="profile.name">
         </section>
     </div>
     <div class="container">
+        <h2 class="text-center my-2">Vaults</h2>
         <div class="masonry">
-            <div class="my-2 border border-light border-outline" v-for="vault in vaults">
+            <div class="my-2" v-for="vault in vaults">
                 <VaultCard :vault="vault" />
             </div>
         </div>
     </div>
-    <section>
-        THE BREAK BETWEEN
+    <section class="my-5">
     </section>
     <div class="container">
+        <h3 class="text-center my-2">Keeps</h3>
         <div class="masonry">
             <div class="my-2" v-for="keep in keeps">
                 <KeepCard :keep="keep" />
@@ -101,9 +104,31 @@ export default {
     width: 80px;
     object-fit: contain;
     object-position: center;
+    border-radius: 50%;
 }
 
 .masonry {
     columns: 250px;
+}
+
+h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#0c0756, #da0f3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#034f3e, #d2731a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#114b5c, #ffe208);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 </style>

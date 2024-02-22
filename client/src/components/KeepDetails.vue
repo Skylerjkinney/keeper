@@ -5,8 +5,8 @@
         </div>
         <div class="col-8 text-center">
             <router-link :to="{ name: 'Profile', params: { profileId: activeKeep.creatorId } }">
-                <img :title="`Look at ${activeKeep.creator.name}'s Vaults!`" :src="activeKeep.creator.picture"
-                    :alt="activeKeep.creator.name" class="my-2 tiny-img">
+                <img @click="dismissModal()" :title="`Look at ${activeKeep.creator.name}'s Vaults!`"
+                    :src="activeKeep.creator.picture" :alt="activeKeep.creator.name" class="my-2 tiny-img">
             </router-link>
             <div class="btn-group">
                 <div class="mx-1"><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</div>
@@ -23,12 +23,16 @@
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 import { Keep } from '../models/Keep';
+import { Modal } from 'bootstrap';
 
 export default {
 
     setup() {
         return {
             activeKeep: computed(() => AppState.activeKeep),
+            dismissModal() {
+                Modal.getOrCreateInstance("#keep-details-modal").hide()
+            }
         }
     }
 };
