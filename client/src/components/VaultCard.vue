@@ -25,6 +25,7 @@ import { vaultsService } from '../services/VaultService'
 import { computed } from 'vue';
 import { Vault } from '../models/Vault';
 import { AppState } from '../AppState';
+import Pop from '../utils/Pop';
 export default {
     props: { vault: { type: Vault, required: true } },
     setup() {

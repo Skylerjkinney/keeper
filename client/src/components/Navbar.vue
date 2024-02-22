@@ -13,7 +13,7 @@
       <ul class="navbar-nav me-auto">
         <li>
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            <button v-if="account.id" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               <i class="mdi mdi-plus">Create</i>
             </button>
@@ -37,9 +37,10 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { AppState } from '../AppState';
 export default {
   setup() {
 
@@ -50,6 +51,7 @@ export default {
     })
 
     return {
+      account: computed(() => AppState.account),
       theme,
       toggleTheme() {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
