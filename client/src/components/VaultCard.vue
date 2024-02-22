@@ -45,13 +45,11 @@ export default {
             },
             async getVaultById(vaultId) {
                 try {
-                    let currentVault = await vaultsService.getVaultById(vaultId)
-                    if (currentVault.isPrivate == true && this.account.id != currentVault.creatorId) {
-                        router.push({ name: 'Home' })
-                    }
+                    await vaultsService.getVaultById(vaultId)
                     router.push({ name: 'Vault', params: { vaultId: vaultId } })
                 } catch (error) {
                     Pop.error(error)
+                    router.push({ name: 'Home' })
                 }
             }
         }
