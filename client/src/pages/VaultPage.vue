@@ -1,4 +1,5 @@
 <template>
+    <h1>HEY BRO UR AT THIS VAULTS PAGE</h1>
     <div v-if="activeVault" class="container">
 
 

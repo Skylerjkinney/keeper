@@ -26,6 +26,7 @@ import { computed } from 'vue';
 import { Vault } from '../models/Vault';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
+import { router } from '../router'
 export default {
     props: { vault: { type: Vault, required: true } },
     setup() {
@@ -44,6 +45,7 @@ export default {
             async getVaultById(vaultId) {
                 try {
                     await vaultsService.getVaultById(vaultId)
+                    router.push({ name: 'Vault', params: { vaultId: vaultId } })
                 } catch (error) {
                     Pop.error(error)
                 }
