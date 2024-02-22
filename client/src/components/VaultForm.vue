@@ -21,8 +21,7 @@
         </div>
         <div>
             <label for="create-vault-private">Private?</label>
-            <input v-model="vaultData.isPrivate" type="checkbox" name="create-vault-private" id="create-vault-private"
-                required>
+            <input v-model="vaultData.isPrivate" type="checkbox" name="create-vault-private" id="create-vault-private">
         </div>
         <div class="col-12 text-start m-2">
             <button class="btn btn-primary" type="submit">Create vault</button>
@@ -34,7 +33,9 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
-import { vaultsService } from '../services/vaultService';
+import { vaultsService } from '../services/VaultService';
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
 export default {
     setup() {
         const vaultData = ref({})
