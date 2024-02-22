@@ -22,6 +22,17 @@ public class VaultKeepRepository(IDbConnection db)
         VaultKeep vaultKeep = db.Query<VaultKeep>(sql, vaultKeepData).FirstOrDefault();
         return vaultKeep;
     }
+    internal VaultKeep GetVaultKeep(int vaultKeepId)
+    {
+        string sql = @"
+        SELECT
+        vaultKeeps.*
+        FROM vaultKeeps
+        WHERE id = @vaultKeepId
+        ";
+        VaultKeep vaultKeep = db.Query<VaultKeep>(sql, new { vaultKeepId }).FirstOrDefault();
+        return vaultKeep;
+    }
 
     internal List<VaultKept> GetVaultKeeps(int vaultId)
     {
@@ -53,4 +64,6 @@ public class VaultKeepRepository(IDbConnection db)
         ";
         db.Execute(sql, new { vaultKeepId });
     }
+
+
 }

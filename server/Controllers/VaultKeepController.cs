@@ -22,6 +22,7 @@ public class VaultKeepsController : ControllerBase
         try
         {
             Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
+            vaultKeepData.CreatorId = userInfo.Id;
             VaultKeep vaultKeep = vaultKeepService.CreateVaultKeep(vaultKeepData);
             return Ok(vaultKeep);
         }
@@ -37,7 +38,8 @@ public class VaultKeepsController : ControllerBase
         try
         {
             Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
-            string message = vaultKeepService.DeleteVaultKeep(vaultKeepId);
+            string userId = userInfo.Id;
+            string message = vaultKeepService.DeleteVaultKeep(vaultKeepId, userId);
             return Ok(message);
         }
         catch (HttpRequestException error)

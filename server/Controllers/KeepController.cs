@@ -70,6 +70,7 @@ public class KeepController : ControllerBase
         try
         {
             Account userInfo = await auth.GetUserInfoAsync<Account>(HttpContext);
+            updateKeepData.CreatorId = userInfo.Id;
             Keep keep = keepService.UpdateKeep(updateKeepData, keepId);
             return Ok(keep);
         }
