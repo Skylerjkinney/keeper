@@ -1,5 +1,5 @@
 <template>
-    <div class="component">
+    <div v-if="activeVault" class="container">
 
 
     </div>
@@ -11,7 +11,9 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 export default {
     setup() {
-        return {}
+        return {
+
+        }
     }
 };
 </script>

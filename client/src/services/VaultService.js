@@ -17,6 +17,12 @@ class VaultsService {
         const indexToRemove = AppState.vaults.findIndex(vault => vault.id == vaultId)
         AppState.vaults.splice(indexToRemove, 1)
     }
+    async getVaultById(vaultId) {
+        AppState.activeVault = null
+        const response = await api.get(`api/vaults/${vaultId}`)
+        logger.log("getting vault", response.data)
+        AppState.activeVault = new Vault(response.data)
+    }
 }
 
 export const vaultsService = new VaultsService()

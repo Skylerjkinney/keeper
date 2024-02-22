@@ -2,17 +2,14 @@
     <header class="mb-1">
         <Navbar />
     </header>
-    <div v-if="profile" class="container-fluid">
-        <div class="text-center my-2">
+    <div class="container-fluid bg-img">
+        <div v-if="profile" class="text-center my-2">
             <h1>{{ profile.name }}</h1>
             <img class="profile-img" :src="profile.picture" :alt="profile.name">
+            <h2 class="text-center my-2">Vaults</h2>
         </div>
-        <section class="row">
-            <img class="bg-img" :src="profile.coverImg" :alt="profile.name">
-        </section>
     </div>
     <div class="container">
-        <h2 class="text-center my-2">Vaults</h2>
         <div class="masonry">
             <div class="my-2" v-for="vault in vaults">
                 <VaultCard :vault="vault" />
@@ -20,9 +17,9 @@
         </div>
     </div>
     <section class="my-5">
+        <h3 class="text-center my-2">Keeps</h3>
     </section>
     <div class="container">
-        <h3 class="text-center my-2">Keeps</h3>
         <div class="masonry">
             <div class="my-2" v-for="keep in keeps">
                 <KeepCard :keep="keep" />
@@ -82,7 +79,8 @@ export default {
         return {
             profile: computed(() => AppState.activeProfile),
             keeps: computed(() => AppState.keeps),
-            vaults: computed(() => AppState.vaults)
+            vaults: computed(() => AppState.vaults),
+            bgImg: computed(() => `url(${AppState.activeProfile?.coverImg})`)
         };
     },
     components: { KeepCard, VaultCard }
@@ -92,11 +90,10 @@ export default {
 
 <style lang="scss" scoped>
 .bg-img {
-    height: 100dvh;
-    width: 100dvw;
-    object-position: center;
-    object-fit: cover;
-    position: fixed;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: v-bind(bgImg);
 }
 
 .profile-img {

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div @click="getVaultById(vault.id)" class="container">
         <img class="rounded" :src="vault.img" :alt="vault.name" style="width: 100%;" :title="vault.name">
         <div v-if="vault.isPrivate">
             <i class="mdi mdi-lock top-left"></i>
@@ -41,7 +41,13 @@ export default {
                     Pop.error(error)
                 }
             },
-
+            async getVaultById(vaultId) {
+                try {
+                    await vaultsService.getVaultById(vaultId)
+                } catch (error) {
+                    Pop.error(error)
+                }
+            }
         }
     }
 };
