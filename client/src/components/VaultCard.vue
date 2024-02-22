@@ -31,6 +31,7 @@ export default {
     props: { vault: { type: Vault, required: true } },
     setup() {
         return {
+            activeVault: computed(() => AppState.activeVault),
             account: computed(() => AppState.account),
             async deleteVault(vaultId) {
                 try {
@@ -44,7 +45,10 @@ export default {
             },
             async getVaultById(vaultId) {
                 try {
-                    await vaultsService.getVaultById(vaultId)
+                    let currentVault = await vaultsService.getVaultById(vaultId)
+                    if (currentVault.isPrivate == true && this.account.id != currentVault.creatorId) {
+                        router.push({ name: 'Home' })
+                    }
                     router.push({ name: 'Vault', params: { vaultId: vaultId } })
                 } catch (error) {
                     Pop.error(error)

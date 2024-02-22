@@ -1,6 +1,6 @@
 <template>
-    <h1>HEY BRO UR AT THIS VAULTS PAGE</h1>
-    <div v-if="activeVault" class="container">
+    <div class="container">
+        <h1>HEY BRO UR AT THIS VAULTS PAGE</h1>
 
 
     </div>
@@ -13,7 +13,7 @@ import { computed, ref, onMounted } from 'vue';
 export default {
     setup() {
         return {
-
+            activeVault: computed(() => AppState.activeVault)
         }
     }
 };

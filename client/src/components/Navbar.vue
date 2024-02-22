@@ -84,4 +84,11 @@ a:hover {
     height: 64px;
   }
 }
+
+h1 {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#3c0c84a3, #c1294ab7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 </style>

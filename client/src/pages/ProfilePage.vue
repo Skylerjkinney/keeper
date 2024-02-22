@@ -1,7 +1,4 @@
 <template>
-    <header class="mb-1">
-        <Navbar />
-    </header>
     <div class="container-fluid bg-img">
         <div v-if="profile" class="text-center my-2">
             <h1>{{ profile.name }}</h1>

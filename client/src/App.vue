@@ -9,6 +9,9 @@
     <ModalWrapper modalId="keep-details-modal">
       <KeepDetails />
     </ModalWrapper>
+    <header class="mb-1">
+      <Navbar />
+    </header>
     <router-view />
   </main>
 </template>
@@ -20,6 +23,7 @@ import { AppState } from './AppState'
 import KeepDetails from './components/KeepDetails.vue'
 import KeepForm from './components/KeepForm.vue'
 import VaultForm from './components/VaultForm.vue'
+import Navbar from './components/Navbar.vue'
 
 
 export default {
@@ -28,7 +32,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { ModalWrapper, KeepDetails, KeepForm, VaultForm }
+  components: { ModalWrapper, KeepDetails, KeepForm, VaultForm, Navbar }
 }
 </script>
 <style lang="scss">

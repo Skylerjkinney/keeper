@@ -1,7 +1,4 @@
 <template>
-  <header class="mb-5">
-    <Navbar />
-  </header>
   <div class="container">
     <div class="masonry">
       <div class="my-2" v-for="keep in keeps">
