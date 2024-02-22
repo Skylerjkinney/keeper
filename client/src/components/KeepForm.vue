@@ -30,6 +30,7 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 import { keepsService } from '../services/KeepService';
 import { logger } from '../utils/Logger';
+import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
 export default {
     setup() {
@@ -40,6 +41,7 @@ export default {
                 try {
                     logger.log('Making Keep', keepData.value)
                     await keepsService.createKeep(keepData.value)
+                    Modal.getOrCreateInstance("#keep-form-modal").hide()
                     Pop.success('Keep fresh out of oven 👍')
                 } catch (error) {
                     Pop.error(error)

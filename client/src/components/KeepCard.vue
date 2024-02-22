@@ -4,19 +4,38 @@
         <div class="bottom-left fw-2">{{ keep.name }}</div>
         <div class="bottom-right">
             <img class="img-fluid rounded" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
+            <div>
+                <button @click="deleteKeep(keep.id)" v-if="account && account.id == keep.creatorId"
+                    class="btn btn-danger border shadow border-light text-dark mb-2"><i class="mdi mdi-delete"></i></button>
+            </div>
         </div>
     </div>
 </template>
 
 
 <script>
+import { AppState } from '../AppState';
+import { computed } from 'vue';
 import { Keep } from '../models/Keep';
 import { keepsService } from '../services/KeepService';
 import Pop from '../utils/Pop';
+import { Modal } from 'bootstrap';
 export default {
     props: { keep: { type: Keep, required: true } },
     setup() {
         return {
+            account: computed(() => AppState.account),
+            async deleteKeep(keepId) {
+                try {
+                    if (await Pop.confirm('This keep will be discarded indefinitely') == true) {
+                        Modal.getOrCreateInstance("#keep-details-modal").hide()
+                        await keepsService.deleteKeep(keepId)
+                        Pop.success('It is done')
+                    }
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
             async getKeepById(keepId) {
                 try {
                     await keepsService.getKeepById(keepId)

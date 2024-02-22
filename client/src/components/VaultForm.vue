@@ -35,6 +35,7 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 import { vaultsService } from '../services/VaultService';
 import { logger } from '../utils/Logger';
+import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
 export default {
     setup() {
@@ -45,6 +46,7 @@ export default {
                 try {
                     logger.log('Making vault', vaultData.value)
                     await vaultsService.createVault(vaultData.value)
+                    Modal.getOrCreateInstance("#vault-form-modal").hide()
                     Pop.success('vault fresh out of oven 👍')
                 } catch (error) {
                     Pop.error(error)
