@@ -50,6 +50,10 @@ public class KeepService(KeepRepository repo)
     internal string DeleteKeep(int keepId, string userId)
     {
         Keep keepToDelete = GetKeepById(keepId);
+        if (keepToDelete == null)
+        {
+            throw new Exception("there is no keep there");
+        }
         if (keepToDelete.CreatorId == userId)
         {
             repo.DeleteKeep(keepId);
