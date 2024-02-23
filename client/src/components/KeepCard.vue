@@ -20,6 +20,7 @@ import { Keep } from '../models/Keep';
 import { keepsService } from '../services/KeepService';
 import Pop from '../utils/Pop';
 import { Modal } from 'bootstrap';
+import { accountService } from '../services/AccountService';
 export default {
     props: { keep: { type: Keep, required: true } },
     setup() {
@@ -39,6 +40,7 @@ export default {
             async getKeepById(keepId) {
                 try {
                     await keepsService.getKeepById(keepId)
+                    await accountService.getMyVaults()
                 } catch (error) {
                     Pop.error(error)
                 }

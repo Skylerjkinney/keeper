@@ -30,9 +30,6 @@ class VaultsService {
         let vaultKeeps = response.data.map(keep => new Keep(keep))
         AppState.keeps = vaultKeeps
     }
-    async getVaults() {
-        const response = await api.get('')
-    }
 }
 
 export const vaultsService = new VaultsService()

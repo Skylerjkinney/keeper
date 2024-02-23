@@ -29,13 +29,6 @@ export default {
         Pop.error(error)
       }
     }
-    async function getVaults() {
-      try {
-        await vaultsService.getVaults()
-      } catch (error) {
-
-      }
-    }
     return {
       keeps: computed(() => AppState.keeps),
     }

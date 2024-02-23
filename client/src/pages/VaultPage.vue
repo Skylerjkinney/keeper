@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="activeVault">
         <img :src="activeVault.img" :alt="activeVault.name">
     </div>
     <div class="container">
@@ -18,12 +18,15 @@ import { computed, ref, onMounted } from 'vue';
 import { vaultsService } from '../services/VaultService';
 import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
+import { router } from '../router';
+
 export default {
     setup() {
         const route = useRoute();
         const watchableVaultId = computed(() => route.params.vaultId);
         onMounted(() => {
             getVaultKeeps()
+            getVault()
         })
         async function getVaultKeeps() {
             try {
@@ -31,6 +34,15 @@ export default {
                     await vaultsService.getVaultKeeps(route.params.vaultId)
             } catch (error) {
                 Pop.error(error)
+                router.push({ name: 'Home' })
+            }
+        }
+        async function getVault() {
+            try {
+                await vaultsService.getVaultById(watchableVaultId.value)
+            } catch (error) {
+                Pop.error(error)
+                router.push({ name: 'Home' })
             }
         }
         return {

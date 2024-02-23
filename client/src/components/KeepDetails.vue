@@ -15,12 +15,15 @@
             <div class="mx-1"><i class="mdi mdi-eye"></i> {{ activeKeep.views }}</div>
             <div class="mx-1"><i class="mdi mdi-lock">{{ activeKeep.kept }}</i></div>
         </div>
-        <div class="mb-3 col-6">
+        <form @submit.prevent="vaultKeep(activeKeep.id)" class="mb-3 col-6">
             <label for="vault-select">Select Vault</label>
             <select v-model="vaultData.vaultId" class="form-control" name="vault-select" required id="vault-select">
                 <option v-for="vault in vaults" :key="vault.id" :value="vault.id">{{ vault.name }}</option>
             </select>
-        </div>
+            <div class="col-12 text-start m-2">
+                <button class="btn btn-primary" type="submit">Create VaultKeep</button>
+            </div>
+        </form>
     </section>
 </template>
 
@@ -43,6 +46,7 @@ export default {
             selectedVaults: computed(() => AppState.vaults.find(vault => vault.id == vaultData.value.vaultId)),
             async vaultKeep() {
                 try {
+                    vaultData.value.keepId = AppState.activeKeep.id
                     await vaultKeepService.createVaultKeep(vaultData.value)
                     this.dismissModal()
                     vaultData.value = {}

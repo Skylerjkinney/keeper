@@ -2,7 +2,7 @@ import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
-
+import { Vault } from '../models/Vault'
 class AccountService {
   async getAccount() {
     try {
@@ -22,6 +22,12 @@ class AccountService {
     } catch (error) {
       logger.error(error)
     }
+  }
+  async getMyVaults() {
+    const response = await api.get('/account/vaults')
+    logger.log('Getting account vaults', response.data)
+    const myVaults = response.data.map(vault => new Vault(vault))
+    AppState.vaults = myVaults
   }
 }
 
