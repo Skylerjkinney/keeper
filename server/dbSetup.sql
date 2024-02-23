@@ -7,7 +7,7 @@ CREATE TABLE vaults (
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE keeps (
-    id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(1000) NOT NULL, img VARCHAR(255) NOT NULL, creatorId VARCHAR(255), views INT, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+    id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(1000) NOT NULL, img VARCHAR(255) NOT NULL, creatorId VARCHAR(255), views INT, kept INT, FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE vaultKeeps (

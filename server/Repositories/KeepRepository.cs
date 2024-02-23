@@ -8,9 +8,9 @@ public class KeepRepository(IDbConnection db)
     {
         string sql = @"
         INSERT INTO keeps
-        (creatorId ,name, description, img, views)
+        (creatorId ,name, description, img, views, kept)
         VALUES
-        (@creatorId, @name, @description, @img, @views);
+        (@creatorId, @name, @description, @img, @views, @kept);
 
         SELECT
         keeps.*,
@@ -33,9 +33,13 @@ public class KeepRepository(IDbConnection db)
         string sql = @"
         SELECT
         keeps.*,
+        COUNT(vaultKeeps.id) AS kept,
         accounts.*
         FROM keeps
-        JOIN accounts ON keeps.creatorId = accounts.id";
+        JOIN accounts ON keeps.creatorId = accounts.id
+        LEFT JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
+        GROUP BY (keeps.id)
+        ";
         List<Keep> keeps = db.Query<Keep, Account, Keep>(sql, (keep, account) =>
         {
             keep.Creator = account;
@@ -49,9 +53,11 @@ public class KeepRepository(IDbConnection db)
         string sql = @"
         SELECT
         keeps.*,
+        COUNT(vaultKeeps.id) AS kept,
         accounts.*
         FROM keeps
         JOIN accounts ON keeps.creatorId = accounts.id
+        LEFT JOIN vaultKeeps ON vaultKeeps.keepId = keeps.id
         WHERE keeps.id = @keepId
         ";
         Keep keep = db.Query<Keep, Account, Keep>(sql, (keep, account) =>
@@ -69,7 +75,8 @@ public class KeepRepository(IDbConnection db)
         name = @name,
         description = @description,
         img = @img,
-        views = @views
+        views = @views,
+        kept = @kept
         WHERE id = @id;
 
         SELECT
