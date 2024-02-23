@@ -13,7 +13,7 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { vaultsService } from '../services/VaultService';
 import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
@@ -27,7 +27,10 @@ export default {
         onMounted(() => {
             getVaultKeeps()
             getVault()
-        })
+        }),
+            onUnmounted(() => {
+                clearAppState()
+            })
         async function getVaultKeeps() {
             try {
                 AppState.keeps = [],
@@ -45,10 +48,14 @@ export default {
                 router.push({ name: 'Home' })
             }
         }
+        function clearAppState() {
+            AppState.activeVault = null
+        }
         return {
             activeVault: computed(() => AppState.activeVault),
             keeps: computed(() => AppState.keeps),
-            bgImg: computed(() => `url(${AppState.activeVault?.img})`)
+            bgImg: computed(() => `url(${AppState.activeVault?.img})`),
+            account: computed(() => AppState.account)
         }
     },
     components: { KeepCard }

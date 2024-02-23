@@ -7,6 +7,10 @@
             <div>
                 <button @click="deleteKeep(keep.id)" v-if="account && account.id == keep.creatorId"
                     class="btn btn-danger border shadow border-light text-dark mb-2"><i class="mdi mdi-delete"></i></button>
+                <button @click="removeKeep(keep.vaultKeepId)"
+                    v-if="activeVault?.creatorId && account?.id == activeVault?.creatorId"
+                    class="btn btn-warning border shadow border-dark text-danger mb-2"><i
+                        class="mdi mdi-file-remove"></i></button>
             </div>
         </div>
     </div>
@@ -21,11 +25,14 @@ import { keepsService } from '../services/KeepService';
 import Pop from '../utils/Pop';
 import { Modal } from 'bootstrap';
 import { accountService } from '../services/AccountService';
+import { router } from '../router';
+import { vaultKeepService } from '../services/VaultKeepService';
 export default {
     props: { keep: { type: Keep, required: true } },
     setup() {
         return {
             account: computed(() => AppState.account),
+            activeVault: computed(() => AppState.activeVault),
             async deleteKeep(keepId) {
                 try {
                     if (await Pop.confirm('This keep will be discarded indefinitely') == true) {
@@ -35,6 +42,17 @@ export default {
                     }
                 } catch (error) {
                     Pop.error(error)
+                }
+            },
+            async removeKeep(vaultKeepId) {
+                try {
+                    if (await Pop.confirm('Remove this keep from your vault?') == true) {
+                        await vaultKeepService.deleteVaultKeep(vaultKeepId)
+                        Modal.getOrCreateInstance("#keep-details-modal").hide()
+                    } Pop.success('Keep removed from vault')
+                } catch (error) {
+                    Pop.error(error)
+                    router.push({ name: 'Home' })
                 }
             },
             async getKeepById(keepId) {
