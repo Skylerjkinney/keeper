@@ -42,15 +42,15 @@ export default {
         return {
             vaultData,
             activeKeep: computed(() => AppState.activeKeep),
-            vaults: computed(() => AppState.vaults),
-            selectedVaults: computed(() => AppState.vaults.find(vault => vault.id == vaultData.value.vaultId)),
+            vaults: computed(() => AppState.accountVaults),
+            selectedVaults: computed(() => AppState.accountVaults.find(vault => vault.id == vaultData.value.vaultId)),
             async vaultKeep() {
                 try {
                     vaultData.value.keepId = AppState.activeKeep.id
                     await vaultKeepService.createVaultKeep(vaultData.value)
                     this.dismissModal()
                     vaultData.value = {}
-                    Pop.success("Vault is Keeped")
+                    Pop.success("Vault is Kept")
                 } catch (error) {
                     Pop.error(error)
                 }
