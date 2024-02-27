@@ -107,22 +107,15 @@ export default {
 
 h1 {
     font-size: 72px;
-    background: -webkit-linear-gradient(#0c0756, #da0f3b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 h2 {
     font-size: 72px;
-    background: -webkit-linear-gradient(#034f3e, #d2731a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
 }
 
 h3 {
     font-size: 72px;
-    background: -webkit-linear-gradient(#114b5c, #ffe208);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
 }
 </style>
